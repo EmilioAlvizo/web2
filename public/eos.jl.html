@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8"/>
+        <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+        <meta name="description" content/>
+        <meta name="author" content/>
+        <title>TermoQuímica</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:800,900,700,600,500,400&display=swap"/>
+        <link href="css/genie/nuevod.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <header>
+            <nav class="barra">
+                <a class="logo" href="./">Logo</a>
+                <div class="contenedor-nav">
+                    <ul class="primeros-botones">
+                        <li>
+                            <a href="./">Home</a>
+                        </li>
+                        <li class="contenedor-nav2">
+                            <a>Métodos</a>
+                            <ul class="primeros-botones2">
+                                <li>
+                                    <a href="./eos">EOS</a>
+                                </li>
+                                <li>
+                                    <a>Liquido/Vapor</a>
+                                    <ul class="ul2">
+                                        <li>
+                                            <a href="./ideal">Ideal</a>
+                                        </li>
+                                        <li>
+                                            <a href="./margules">Margules</a>
+                                        </li>
+                                        <li>
+                                            <a href="./vanlaar">Van Laar</a>
+                                        </li>
+                                        <li>
+                                            <a href="./wilson">Wilson</a>
+                                        </li>
+                                        <li>
+                                            <a href="./wilsonmod">Wilson Modificado</a>
+                                        </li>
+                                        <li>
+                                            <a href="./nrtl">NRTL</a>
+                                        </li>
+                                        <li>
+                                            <a href="./uniquac">UNIQUAC</a>
+                                        </li>
+                                        <li>
+                                            <a href="./unifac">UNIFAC</a>
+                                        </li>
+                                        <li>
+                                            <a href="./unifacmod">UNIFAC Modificado</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="./build/index.html" target="_blank">Documentación</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="contenedor-flex">
+                <div class="contenido-header">
+                    <h1 class="header-h1" data-pg-ia='{"l":[{"trg":"load","a":"fadeInUp"}]}' data-pg-ia-hide>Ecuaciones de estado</h1>
+                </div>
+                <div class="contenedor-imagen"></div>
+            </div>
+        </header>
+
+        <% if error[1].error %>
+        <% "" %>
+        <% else %>
+        <section>
+            <form name="ejemplo9" method="GET" action="./f10" enctype="multipart/form-data">
+                <section class="cajapapi">
+                    <div class="caja-hija">
+                        <div class="titulo-tabla-verde">
+                            <h3>Numero de componentes</h3>
+                        </div>
+                        <div class="contenedor-tabla">
+                            <input name="n" step="1" class="entrada" onkeyup="aumentarSize()" required value="1" type="number"/>
+                        </div>
+                    </div>
+                </section>
+                <div class="cajapapi">
+                    <button class="boton-header2" type="submit">Enviar</button>
+                </div>
+            </form>
+        </section>
+        <% end %>
+        <% if error[1].error && error[1].valor==1 %>
+        <section>
+            <form method="GET" action="./ff10_1" enctype="multipart/form-data">
+
+                <section class="cajapapi">
+                    <div class="caja-hija">
+                        <div class="titulo-tabla-verde">
+                            <h3>Parámetros de entrada</h3>
+                        </div>
+                        <div class="contenedor-tabla">
+                            <table style="width:100%">
+                                <tr>
+                                    <th class='top-tabla-verde'>Temperatura
+                                    	<select name="uT">
+                                            <option value="K">K</option>
+                                            <option value="°C">°C</option>
+                                            <option value="Ra">Ra</option>
+                                            <option value="°F">°F</option>
+                                        </select>
+                                    </th>
+                                    <th class='top-tabla-verde'>Presion
+                                    	<select name="uP">
+                                            <option value="atm">atm</option>
+                                            <option value="Torr">Torr</option>
+                                            <option value="Pa">Pa</option>
+                                            <option value="kPa">kPa</option>
+                                            <option value="MPa">MPa</option>
+                                            <option value="psi">psi</option>
+                                            <option value="bar">bar</option>
+                                        </select>
+                                    </th>
+                                    <th class='top-tabla-verde'>Temperatura critica
+                                    	<select name="uTc">
+                                            <option value="K">K</option>
+                                            <option value="°C">°C</option>
+                                            <option value="Ra">Ra</option>
+                                            <option value="°F">°F</option>
+                                        </select>
+                                    </th>
+                                    <th class='top-tabla-verde'>Presion critica
+                                    	<select name="uPc">
+                                            <option value="atm">atm</option>
+                                            <option value="Torr">Torr</option>
+                                            <option value="Pa">Pa</option>
+                                            <option value="kPa">kPa</option>
+                                            <option value="MPa">MPa</option>
+                                            <option value="psi">psi</option>
+                                            <option value="bar">bar</option>
+                                        </select>
+                                    </th>
+                                    <th class='top-tabla-verde'>𝜔</th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input name="T" step="any" class="entrada" onkeyup="aumentarSize()" required value="100" type="number"/>
+                                    </td>
+                                    <td>
+                                        <input name="P" step="any" class="entrada" onkeyup="aumentarSize()" required value="10" type="number"/>
+                                    </td>
+                                    <td>
+                                        <input name="Tc" step="any" class="entrada" onkeyup="aumentarSize()" required value="155.5" type="number"/>
+                                    </td>
+                                    <td>
+                                        <input name="Pc" step="any" class="entrada" onkeyup="aumentarSize()" required value="10.1" type="number"/>
+                                    </td>
+                                    <td>
+                                        <input name="𝜔" step="any" class="entrada" onkeyup="aumentarSize()" required value="0.155" type="number"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="cajapapi">
+                    <button class="boton-header2" type="submit">Enviar</button>
+                </div>
+            </form>
+        </section>
+        <% elseif error[1].error && error[1].valor!=1 %>
+	    <section>
+            <form name="ejemplo9" method="GET" action="./ff10_m" enctype="multipart/form-data">
+
+                <section class="cajapapi">
+                    <div class="caja-hija">
+                        <div class="titulo-tabla-verde">
+                            <h3>Parámetros de entrada</h3>
+                        </div>
+                        <div class="contenedor-tabla">
+                            <table style="width:100%">
+                                <tr>
+                                    <th class='top-tabla-verde'>Temperatura
+                                    	<select name="uT">
+                                            <option value="K">K</option>
+                                            <option value="°C">°C</option>
+                                            <option value="Ra">Ra</option>
+                                            <option value="°F">°F</option>
+                                        </select>
+                                    </th>
+                                    <th class='top-tabla-verde'>Presion
+                                    	<select name="uP">
+                                            <option value="atm">atm</option>
+                                            <option value="Torr">Torr</option>
+                                            <option value="Pa">Pa</option>
+                                            <option value="kPa">kPa</option>
+                                            <option value="MPa">MPa</option>
+                                            <option value="psi">psi</option>
+                                            <option value="bar">bar</option>
+                                        </select>
+                                    </th>
+                                    <th class='top-tabla-verde'>Temperatura critica
+                                    	<select name="uTc">
+                                            <option value="K">K</option>
+                                            <option value="°C">°C</option>
+                                            <option value="Ra">Ra</option>
+                                            <option value="°F">°F</option>
+                                        </select>
+                                    </th>
+                                    <th class='top-tabla-verde'>Presion critica
+                                    	<select name="uPc">
+                                            <option value="atm">atm</option>
+                                            <option value="Torr">Torr</option>
+                                            <option value="Pa">Pa</option>
+                                            <option value="kPa">kPa</option>
+                                            <option value="MPa">MPa</option>
+                                            <option value="psi">psi</option>
+                                            <option value="bar">bar</option>
+                                        </select>
+                                    </th>
+                                    <th class='top-tabla-verde'>y</th>
+                                    <th class='top-tabla-verde'>𝜔</th>
+                                </tr>
+
+                                <tr>
+                                    <td rowspan='$(error[1].valor+1)'>
+                                        <input name='T' step='any' class='entrada' onkeyup='aumentarSize()' required value='100' type='number' />
+                                    </td>
+                                    <td rowspan='$(error[1].valor+1)'>
+                                        <input name='P' step='any' class='entrada' onkeyup='aumentarSize()' required value='10' type='number' />
+                                    </td>
+                                </tr>
+                                <% ["<tr>
+                                    <td>
+                                        <input name='Tc$i' step='any' class='entrada' onkeyup='aumentarSize()' required value='$(155.5*(1+i-1/i))' type='number'/>
+                                    </td>
+                                    <td>
+                                        <input name='Pc$i' step='any' class='entrada' onkeyup='aumentarSize()' required value='$(10.1*(1+i-1/i))' type='number'/>
+                                    </td>
+                                    <td>
+                                        <input name='y$i' step='any' class='entrada' onkeyup='aumentarSize()' required value='$(1/error[1].valor)' type='number'/>
+                                    </td>
+                                    <td>
+                                        <input name='𝜔$i' step='any' class='entrada' onkeyup='aumentarSize()' required value='$(0.155*(1+i-1/i))' type='number'/>
+                                    </td>
+                                </tr>" for i=1:error[1].valor]... %>
+                            </table>
+                            <input name='n' class='entrada' onkeyup='aumentarSize()' required value='$(error[1].valor)' type='number' style="visibility: hidden;"/>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="cajapapi">
+                    <button class="boton-header2" type="submit">Enviar</button>
+                </div>
+            </form>
+        </section>
+        <% else %>
+        <% "" %>
+        <% end %>
+        
+        <footer>
+            <div class="fu1"></div>
+            <div class="fu2">
+                <div style="display: flex; align-items: center;">
+                    <div class="redsocial" style="background-image: -webkit-linear-gradient(180deg, rgb(3, 73, 166) 0%, rgb(21, 194, 123) 100%); align-items: center;">
+                        <a href=""><img src="img/genie/face.svg"/></a>
+                    </div>
+                    <div class="redsocial" style="background-image: -webkit-linear-gradient(180deg, rgb(68, 83, 172) 0%, rgb(3, 169, 219) 100%);">
+                        <a href=""><img src="img/genie/twitter.svg"/></a>
+                    </div>
+                    <div class="redsocial" style="background-image: -webkit-linear-gradient(180deg, rgb(74, 14, 143) 0%, rgb(180, 48, 167) 100%);">
+                        <a href=""><img src="img/genie/mail.svg"/></a>
+                    </div>
+                </div>
+                <div>
+                    <p style="color: rgba(255, 255, 255, 0.5); padding-top: 51px; font-size: 18px;">© derechos de autor 2020 por Emilio Alvizo Velazquez</p>
+                </div>
+            </div>
+        </footer>
+        <script src="js/genie/miscodigos.js"></script>
+        <script type="text/javascript" src="js/genie/pgia.js"></script>
+        <script src="//i.upmath.me/latex.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </body>
+</html>

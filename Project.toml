@@ -1,0 +1,16 @@
+name = "Ultimaversion"
+uuid = "49475758-8032-4bd8-9f28-438fa8593720"
+authors = ["Emilio Alvizo Velázquez <emilio_alvizo@yahoo.com.mx>"]
+version = "0.1.0"
+
+[deps]
+Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
+Genie = "c43c736e-a2d1-11e8-161f-af95117fbd1e"
+Logging = "56ddb016-857b-54e1-b83d-db4d58db5568"
+LoggingExtras = "e6f89c97-d47a-5376-807f-9c37f3926c36"
+MbedTLS = "739be429-bea8-5141-9913-cc70e7f3736d"
+NLsolve = "2774e3e8-f4cf-5e23-947b-6d7e65073b56"
+Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
+PyCall = "438e738f-606a-5dbb-bf0a-cddfbfd45ab0"
+TermoQuimica = "7a098a08-e70e-483f-ae9c-35bef3462704"
+Unitful = "1986cc42-f94f-5a68-af5c-568840ba703d"

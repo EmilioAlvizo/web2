@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8"/>
+        <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+        <meta name="description" content/>
+        <meta name="author" content/>
+        <title>TermoQuímica</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:800,900,700,600,500,400&display=swap"/>
+        <link href="css/genie/nuevod.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <header>
+            <nav class="barra">
+                <a class="logo" href="./">Logo</a>
+                <div class="contenedor-nav">
+                    <ul class="primeros-botones">
+                        <li>
+                            <a href="./">Home</a>
+                        </li>
+                        <li class="contenedor-nav2">
+                            <a>Métodos</a>
+                            <ul class="primeros-botones2">
+                                <li>
+                                    <a href="./eos">EOS</a>
+                                </li>
+                                <li>
+                                    <a>Liquido/Vapor</a>
+                                    <ul class="ul2">
+                                        <li>
+                                            <a href="./ideal">Ideal</a>
+                                        </li>
+                                        <li>
+                                            <a href="./margules">Margules</a>
+                                        </li>
+                                        <li>
+                                            <a href="./vanlaar">Van Laar</a>
+                                        </li>
+                                        <li>
+                                            <a href="./wilson">Wilson</a>
+                                        </li>
+                                        <li>
+                                            <a href="./wilsonmod">Wilson Modificado</a>
+                                        </li>
+                                        <li>
+                                            <a href="./nrtl">NRTL</a>
+                                        </li>
+                                        <li>
+                                            <a href="./uniquac">UNIQUAC</a>
+                                        </li>
+                                        <li>
+                                            <a href="./unifac">UNIFAC</a>
+                                        </li>
+                                        <li>
+                                            <a href="./unifacmod">UNIFAC Modificado</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="./build/index.html" target="_blank">Documentación</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="contenedor-flex">
+                <div class="contenido-header">
+                    <h1 class="header-h1" data-pg-ia='{"l":[{"trg":"load","a":"fadeInUp"}]}' data-pg-ia-hide>$(e.metodo)</h1>
+					<p class="header-p">Resultados</p>
+				</div>
+                <div class="contenedor-imagen"></div>
+            </div>
+        </header>
+
+<main>
+    <% if e.error %>
+    <section class="cajapapi">
+		<div class="caja-hija">
+			<div class="titulo-tabla-verde">
+				<h3>Grafica</h3>
+			</div>
+			<div class="contenedor-tabla" style="display: flex; flex-direction: row;">
+                <% e.grafica %>
+			</div>
+
+		</div>
+	</section>
+        
+    <% else  %>
+    <% "" %>
+    <% end  %>
+
+	<section class="cajapapi">
+		<div class="caja-hija">
+			<div class="titulo-tabla-morado">
+				<h3>Resultados</h3>
+			</div>
+
+			<div class="contenedor-tabla">
+
+				<table class="t-ca">
+					<tbody>
+					  <tr>
+					  	<% ["<th class='top-tabla-morado'>x<sub>$i</sub></th>" for i=1:e.n]... %>
+					    <% ["<th class='top-tabla-morado'>y<sub>$i</sub></th>" for i=1:e.n]... %>
+                        <th class='top-tabla-morado'>$(e.t_o_p) ($(e.un))</th>
+					  </tr>
+                    <% [j==e.n*2+1 ? "<td>$(e.v[i])</td></tr>" : j==1 ? "<tr><td>$(e.x[j,i])</td>" : j<=e.n && j>1 ? "<td>$(e.x[j,i])</td>" : "<td>$(e.y[j-e.n,i])</td>" for j=1:e.n*2+1,i=1:e.l]... %>
+				  </tbody>
+				</table>
+			</div>
+
+		</div>
+	</section>
+</main>
+
+
+<footer>
+            <div class="fu1"></div>
+            <div class="fu2">
+                <div style="display: flex; align-items: center;">
+                    <div class="redsocial" style="background-image: -webkit-linear-gradient(180deg, rgb(3, 73, 166) 0%, rgb(21, 194, 123) 100%); align-items: center;">
+                        <a href=""><img src="img/genie/face.svg"/></a>
+                    </div>
+                    <div class="redsocial" style="background-image: -webkit-linear-gradient(180deg, rgb(68, 83, 172) 0%, rgb(3, 169, 219) 100%);">
+                        <a href=""><img src="img/genie/twitter.svg"/></a>
+                    </div>
+                    <div class="redsocial" style="background-image: -webkit-linear-gradient(180deg, rgb(74, 14, 143) 0%, rgb(180, 48, 167) 100%);">
+                        <a href=""><img src="img/genie/mail.svg"/></a>
+                    </div>
+                </div>
+                <div>
+                    <p style="color: rgba(255, 255, 255, 0.5); padding-top: 51px; font-size: 18px;">© derechos de autor 2020 por Emilio Alvizo Velazquez</p>
+                </div>
+            </div>
+        </footer>
+        <script src="js/genie/miscodigos.js"></script>
+        <script type="text/javascript" src="js/pgia.js"></script>
+    </body>
+</html>

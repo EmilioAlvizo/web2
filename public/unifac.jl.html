@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8"/>
+        <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+        <meta name="description" content/>
+        <meta name="author" content/>
+        <title>TermoQuímica</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:800,900,700,600,500,400&display=swap"/>
+        <link href="css/genie/nuevod.css" rel="stylesheet" type="text/css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+
+
+
+    </head>
+    <body>
+        <header>
+            <nav class="barra">
+                <a class="logo" href="./">Logo</a>
+                <div class="contenedor-nav">
+                    <ul class="primeros-botones">
+                        <li>
+                            <a href="./">Home</a>
+                        </li>
+                        <li class="contenedor-nav2">
+                            <a>Métodos</a>
+                            <ul class="primeros-botones2">
+                                <li>
+                                    <a href="./eos">EOS</a>
+                                </li>
+                                <li>
+                                    <a>Liquido/Vapor</a>
+                                    <ul class="ul2">
+                                        <li>
+                                            <a href="./ideal">Ideal</a>
+                                        </li>
+                                        <li>
+                                            <a href="./margules">Margules</a>
+                                        </li>
+                                        <li>
+                                            <a href="./vanlaar">Van Laar</a>
+                                        </li>
+                                        <li>
+                                            <a href="./wilson">Wilson</a>
+                                        </li>
+                                        <li>
+                                            <a href="./wilsonmod">Wilson Modificado</a>
+                                        </li>
+                                        <li>
+                                            <a href="./nrtl">NRTL</a>
+                                        </li>
+                                        <li>
+                                            <a href="./uniquac">UNIQUAC</a>
+                                        </li>
+                                        <li>
+                                            <a href="./unifac">UNIFAC</a>
+                                        </li>
+                                        <li>
+                                            <a href="./unifacmod">UNIFAC Modificado</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="./build/index.html" target="_blank">Documentación</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="contenedor-flex">
+                <div class="contenido-header">
+                    <h1 class="header-h1" data-pg-ia='{"l":[{"trg":"load","a":"fadeInUp"}]}' data-pg-ia-hide>UNIFAC</h1>
+                </div>
+                <div class="contenedor-imagen"></div>
+            </div>
+        </header>
+        <% if error[1].error %>
+        <% "" %>
+    <% else  %>
+
+        <form method="POST" action="./f7">
+            <section class="cajapapi">
+                <div class="caja-hija">
+                    <div class="titulo-tabla-verde">
+                        <h3>Numero de componentes</h3>
+                    </div>
+                    <div class="contenedor-tabla">
+                        <input class="t-ca" type="number" value="2" name="n" id="n" step="1" required>
+                    </div>
+                </div>
+            </section>
+            <div class="cajapapi">
+                <button class="boton-header2" type="submit">Enviar</button>
+            </div>
+        </form>
+        <% end %>
+        <% if error[1].error %>
+
+        <form method="GET" action="./Runifac" class="text-center">
+
+            <section class="cajapapi">
+                <div class="caja-hija">
+                    <div class="titulo-tabla-verde">
+                        <h3>Numero de componentes</h3>
+                    </div>
+                    <div class="contenedor-tabla">
+                        <input class="t-ca" type="number" value="$(error[1].valor)" name="n" step="1" readonly>
+                        <input class="t-ca" type="number" value="1" name="ng" step="1" readonly hidden>
+                    </div>
+                </div>
+            </section>
+            <section class="cajapapi">
+                <div class="caja-hija">
+                    <div class="titulo-tabla-rojo">
+                        <h3>Grupos de componentes</h3>
+                    </div>
+                    <div class="contenedor-tabla">
+                        <table class="t-ca">
+                            <tbody>
+                                <tr class="mastabla">
+                                    <th class='top-tabla-rojo'>
+                                        <button id="botonverde" type="button" style="background-color: #2ff501; width: 30px; height: 30px;"><img src="img/genie/mas.svg" style="width: 20px; height: 20px;"/></button>
+                                        <button id="botonrojo" type="button" style="background-color: #f51501; width: 30px; height: 30px; margin-left: 30px;"><img src="img/genie/menos.svg" style="width: 20px; height: 20px;"/></button>
+                                    </th>
+                                    <th class="top-tabla-rojo">
+                                         <select class="buscador" id="buscador1" placeholder="Grupo..." name="grup1">
+                                            <option value="">Grupo...</option>
+                                            <option value="CH3">CH<sub>3</sub></option>
+                                            <option value="CH2">CH<sub>2</sub></option>
+                                            <option value="CH">CH</option>
+                                            <option value="C">C</option>
+                                            <option value="CH2=CH">CH<sub>2</sub>=CH</option>
+                                            <option value="CH=CH">CH=CH</option>
+                                            <option value="CH2=C">CH<sub>2</sub>=C</option>
+                                            <option value="CH=C">CH=C</option>
+                                            <option value="ACH">ACH</option>
+                                            <option value="AC">AC</option>
+                                            <option value="ACCH3">ACCH<sub>3</sub></option>
+                                            <option value="ACCH2">ACCH<sub>2</sub></option>
+                                            <option value="ACCH">ACCH</option>
+                                            <option value="OH">OH</option>
+                                            <option value="CH3OH">CH<sub>3</sub>OH</option>
+                                             <option value="H2O">H<sub>2</sub>O</option>
+                                             <option value="ACOH">ACOH</option>
+                                             <option value="CH3CO">CH<sub>3</sub>CO</option>
+                                             <option value="CH2CO">CH<sub>2</sub>CO</option>
+                                             <option value="CHO">CHO</option>
+                                             <option value="CH3COO">CH<sub>3</sub>COO</option>
+                                             <option value="CH2COO">CH<sub>2</sub>COO</option>
+                                             <option value="HCOO">HCOO</option>
+                                             <option value="CH3O">CH<sub>3</sub>O</option>
+                                             <option value="CH2O">CH<sub>2</sub>O</option>
+                                             <option value="CHO">CHO</option>
+                                             <option value="THF">THF</option>
+                                             <option value="CH3NH2">CH<sub>3</sub>NH<sub>2</sub></option>
+                                             <option value="CH2NH2">CH<sub>2</sub>NH<sub>2</sub></option>
+                                             <option value="CHNH2">CHNH<sub>2</sub></option>
+                                             <option value="CH3NH">CH<sub>3</sub>NH</option>
+                                             <option value="CH2NH">CH<sub>2</sub>NH</option>
+                                             <option value="CHNH">CHNH</option>
+                                             <option value="CH3N">CH<sub>3</sub>N</option>
+                                             <option value="CH2N">CH<sub>2</sub>N</option>
+                                             <option value="ACNH2">ACNH<sub>2</sub></option>
+                                             <option value="C5H5N">C5H5N</option>
+                                             <option value="C5H4N">C5H4N</option>
+                                             <option value="C5H3N">C5H3N</option>
+                                             <option value="CH3CN">CH3CN</option>
+                                             <option value="CH2CN">CH2CN</option>
+                                             <option value="COOH">COOH</option>
+                                             <option value="HCOOH">HCOOH</option>
+                                             <option value="CH2CL">CH2CL</option>
+                                             <option value="CHCL">CHCL</option>
+                                             <option value="CCL">CCL</option>
+                                             <option value="CH2CL2">CH2CL2</option>
+                                             <option value="CHCL2">CHCL2</option>
+                                             <option value="CCL2">CCL2</option>
+                                             <option value="CHCL3">CHCL3</option>
+                                             <option value="CCL3">CCL3</option>
+                                             <option value="CCL4">CCL4</option>
+                                             <option value="ACCL">ACCL</option>
+                                             <option value="CH3NO2">CH3NO2</option>
+                                             <option value="CH2NO2">CH2NO2</option>
+                                             <option value="CHNO2">CHNO2</option>
+                                             <option value="ACNO2">ACNO2</option>
+                                             <option value="CS2">CS2</option>
+                                             <option value="CH3SH">CH3SH</option>
+                                             <option value="CH2SH">CH2SH</option>
+                                             <option value="FURFURAL">FURFURAL</option>
+                                             <option value="DOH">DOH</option>
+                                             <option value="I">I</option>
+                                             <option value="BR">BR</option>
+                                             <option value="CH≡C">CH≡C</option>
+                                             <option value="C≡C">C≡C</option>
+                                             <option value="DMSO">DMSO</option>
+                                             <option value="ACRY">ACRY</option>
+                                             <option value="CL-(C=C)">CL-(C=C)</option>
+                                             <option value="C=C">C=C</option>
+                                             <option value="ACF">ACF</option>
+                                             <option value="DMF">DMF</option>
+                                             <option value="HCON(..">HCON(..</option>
+                                             <option value="CF3">CF3</option>
+                                             <option value="CF2">CF2</option>
+                                             <option value="CF">CF</option>
+                                             <option value="COO">COO</option>
+                                             <option value="SIH3">SIH3</option>
+                                             <option value="SIH2">SIH2</option>
+                                             <option value="SIH">SIH</option>
+                                             <option value="SI">SI</option>
+                                             <option value="SIH2O">SIH2O</option>
+                                             <option value="SIHO">SIHO</option>
+                                             <option value="SIO">SIO</option>
+                                             <option value="NMP">NMP</option>
+                                             <option value="CCL3F">CCL3F</option>
+                                             <option value="CCL2F">CCL2F</option>
+                                             <option value="HCCL2F">HCCL2F</option>
+                                             <option value="HCCLF">HCCLF</option>
+                                             <option value="CCLF2">CCLF2</option>
+                                             <option value="HCCLF2">HCCLF2</option>
+                                             <option value="CCLF3">CCLF3</option>
+                                             <option value="CCL2F2">CCL2F2</option>
+                                             <option value="AMH2">AMH2</option>
+                                             <option value="AMHCH3">AMHCH3</option>
+                                             <option value="AMHCH2">AMHCH2</option>
+                                             <option value="AM(CH3)2">AM(CH3)2</option>
+                                             <option value="AMCH3CH2">AMCH3CH2</option>
+                                             <option value="AM(CH2)2">AM(CH2)2</option>
+                                             <option value="C2H5O2">C2H5O2</option>
+                                             <option value="C2H4O2">C2H4O2</option>
+                                             <option value="CH3S">CH3S</option>
+                                             <option value="CH2S">CH2S</option>
+                                             <option value="CHS">CHS</option>
+                                             <option value="MORPH">MORPH</option>
+                                             <option value="C4H4S">C4H4S</option>
+                                             <option value="C4H3S">C4H3S</option>
+                                             <option value="C4H2S">C4H2S</option>
+                                             <option value="NCO">NCO</option>
+                                             <option value="(CH2)2SU">(CH2)2SU</option>
+                                             <option value="CH2CHSU">CH2CHSU</option>
+                                             <option value="IMIDAZOL">IMIDAZOL</option>
+                                             <option value="BTI">BTI</option>
+                                          </select>
+                                    </th>
+                                </tr>
+                                <% ["<tr class='mastabla$i'><th class='top-tabla-rojo'>Componente $i</th>
+					<td><input type='number' name='fre$i,1' value='1' placeholder='fre$i,1' step='1' class='entrada'></td>
+                    </tr>" for i=1:error[1].valor]... %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <section class="cajapapi">
+                <div class="caja-hija">
+                    <div class="titulo-tabla-naranja">
+                        <h3>Constantes de Antoine</h3>
+                    </div>
+                    <div class="contenedor-tabla">
+                        <img src="img/genie/antoine.svg">
+                        <table class="t-ca">
+                            <tbody>
+                                <tr>
+                                    <th class='top-tabla-naranja'>Name</th>
+                                    <th class='top-tabla-naranja'>A</th>
+                                    <th class="top-tabla-naranja">B</th>
+                                    <th class='top-tabla-naranja'>C</th>
+                                </tr>
+                                <% ["<tr>
+						<th class='top-tabla-naranja'><input type='text' name='co$(i)' value='Componente $(i)' class='form-control text-center'></th>
+						<td><input type='number' name='$i,1' value='16.1154' placeholder='A $i' step='any' class='entrada'></td>
+						<td><input type='number' name='$i,2' value='3483.67' placeholder='B $i' step='any' class='entrada'></td>
+						<td><input type='number' name='$i,3' value='205.807' placeholder='C $i' step='any' class='entrada'></td>
+					</tr>" for i=1:error[1].valor]... %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="caja-hija">
+                    <div class="titulo-tabla-morado">
+                        <h3>Rango</h3>
+                    </div>
+                    <div class="contenedor-tabla">
+                        <table class="t-ca">
+                            <tbody>
+                                <% ["<tr><th class='top-tabla-morado'> Componente $i</th>
+					<td><input type='text' name='x$i' value='0:0.1:1' placeholder='x $i' step='any' class='entrada'></td>
+					</tr>" for i=1:error[1].valor-1]... %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="caja-hija">
+                    <div class="titulo-tabla-azul">
+                        <h3>Pxy &amp; Txy</h3>
+                    </div>
+                    <div class="contenedor-tabla">
+                        <div>
+                            <select name="tipo" onchange="pxy_txy(this.form)">
+                                <option value="Pxy">Pxy</option>
+                                <option value="Txy">Txy</option>
+                            </select>
+                            <input class="t-cu" type="number" name="T" value="273.15" step='any' placeholder="273.15">
+                            <select name="unidadT">
+                                <option value="K">K</option>
+                                <option value="°C">°C</option>
+                                <option value="Ra">Ra</option>
+                                <option value="°F">°F</option>
+                            </select>
+                        </div>
+                        resultados en:
+                        <select name="usalida">
+                            <option value="atm">atm</option>
+                            <option value="Torr">Torr</option>
+                            <option value="Pa">Pa</option>
+                            <option value="kPa">kPa</option>
+                            <option value="psi">psi</option>
+                            <option value="bar">bar</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+            <div class="cajapapi">
+                <button class="boton-header2" type="submit">Enviar</button>
+            </div>
+        </form>
+    <% else  %>
+        <% "" %>
+        <% end %>
+        <footer>
+            <div class="fu1"></div>
+            <div class="fu2">
+                <div style="display: flex; align-items: center;">
+                    <div class="redsocial" style="background-image: -webkit-linear-gradient(180deg, rgb(3, 73, 166) 0%, rgb(21, 194, 123) 100%); align-items: center;">
+                        <a href=""><img src="img/genie/face.svg"/></a>
+                    </div>
+                    <div class="redsocial" style="background-image: -webkit-linear-gradient(180deg, rgb(68, 83, 172) 0%, rgb(3, 169, 219) 100%);">
+                        <a href=""><img src="img/genie/twitter.svg"/></a>
+                    </div>
+                    <div class="redsocial" style="background-image: -webkit-linear-gradient(180deg, rgb(74, 14, 143) 0%, rgb(180, 48, 167) 100%);">
+                        <a href=""><img src="img/genie/mail.svg"/></a>
+                    </div>
+                </div>
+                <div>
+                    <p style="color: rgba(255, 255, 255, 0.5); padding-top: 51px; font-size: 18px;">© derechos de autor 2020 por Emilio Alvizo Velazquez</p>
+                </div>
+            </div>
+        </footer>
+
+
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+
+        <script src="js/genie/miscodigos.js"></script>
+        <script type="text/javascript" src="js/genie/pgia.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </body>
+</html>

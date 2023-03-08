@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8"/>
+        <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+        <meta name="description" content/>
+        <meta name="author" content/>
+        <title>TermoQuímica</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:800,900,700,600,500,400&display=swap"/>
+        <link href="css/genie/nuevod.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <header>
+            <nav class="barra">
+                <a class="logo" href="./">Logo</a>
+                <div class="contenedor-nav">
+                    <ul class="primeros-botones">
+                        <li>
+                            <a href="./">Home</a>
+                        </li>
+                        <li class="contenedor-nav2">
+                            <a>Métodos</a>
+                            <ul class="primeros-botones2">
+                                <li>
+                                    <a href="./eos">EOS</a>
+                                </li>
+                                <li>
+                                    <a>Liquido/Vapor</a>
+                                    <ul class="ul2">
+                                        <li>
+                                            <a href="./ideal">Ideal</a>
+                                        </li>
+                                        <li>
+                                            <a href="./margules">Margules</a>
+                                        </li>
+                                        <li>
+                                            <a href="./vanlaar">Van Laar</a>
+                                        </li>
+                                        <li>
+                                            <a href="./wilson">Wilson</a>
+                                        </li>
+                                        <li>
+                                            <a href="./wilsonmod">Wilson Modificado</a>
+                                        </li>
+                                        <li>
+                                            <a href="./nrtl">NRTL</a>
+                                        </li>
+                                        <li>
+                                            <a href="./uniquac">UNIQUAC</a>
+                                        </li>
+                                        <li>
+                                            <a href="./unifac">UNIFAC</a>
+                                        </li>
+                                        <li>
+                                            <a href="./unifacmod">UNIFAC Modificado</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="./build/index.html" target="_blank">Documentación</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="contenedor-flex">
+                <div class="contenido-header">
+                    <h1 class="header-h1" data-pg-ia='{"l":[{"trg":"load","a":"fadeInUp"}]}' data-pg-ia-hide>Ecuaciones de estado</h1>
+                </div>
+                <div class="contenedor-imagen"></div>
+            </div>
+        </header>
+
+        <section>
+            <form name="ejemplo9" method="GET" action="./ff10_m" enctype="multipart/form-data">
+
+                <section class="cajapapi">
+                    <div class="caja-hija">
+                        <div class="titulo-tabla-verde">
+                            <h3>Parámetros de entrada</h3>
+                        </div>
+                        <div class="contenedor-tabla">
+                            <table style="width:100%">
+                                <tr>
+                                    <th class='top-tabla-verde'>Temperatura
+                                    	<select name="uT">
+                                            <option value="K">K</option>
+                                            <option value="°C">°C</option>
+                                            <option value="Ra">Ra</option>
+                                            <option value="°F">°F</option>
+                                        </select>
+                                    </th>
+                                    <th class='top-tabla-verde'>Presion
+                                    	<select name="uP">
+                                            <option value="atm">atm</option>
+                                            <option value="Torr">Torr</option>
+                                            <option value="Pa">Pa</option>
+                                            <option value="kPa">kPa</option>
+                                            <option value="MPa">MPa</option>
+                                            <option value="psi">psi</option>
+                                            <option value="bar">bar</option>
+                                        </select>
+                                    </th>
+                                    <th class='top-tabla-verde'>Temperatura critica
+                                    	<select name="uTc">
+                                            <option value="K">K</option>
+                                            <option value="°C">°C</option>
+                                            <option value="Ra">Ra</option>
+                                            <option value="°F">°F</option>
+                                        </select>
+                                    </th>
+                                    <th class='top-tabla-verde'>Presion critica
+                                    	<select name="uPc">
+                                            <option value="atm">atm</option>
+                                            <option value="Torr">Torr</option>
+                                            <option value="Pa">Pa</option>
+                                            <option value="kPa">kPa</option>
+                                            <option value="MPa">MPa</option>
+                                            <option value="psi">psi</option>
+                                            <option value="bar">bar</option>
+                                        </select>
+                                    </th>
+                                    <th class='top-tabla-verde'>y</th>
+                                    <th class='top-tabla-verde'>𝜔</th>
+                                </tr>
+                                <tr>
+                                    <td rowspan='$(error[7]+1)'>
+                                        <input name='T' step='any' class='entrada' onkeyup='aumentarSize()' required value='$(error[6].T)' type='number' />
+                                    </td>
+                                    <td rowspan='$(error[7]+1)'>
+                                        <input name='P' step='any' class='entrada' onkeyup='aumentarSize()' required value='$(error[6].P)' type='number' />
+                                    </td>
+                                </tr>
+                                <% ["<tr>
+                                    <td>
+                                        <input name='Tc$i' step='any' class='entrada' onkeyup='aumentarSize()' required value='$(error[6].Tc[i])' type='number'/>
+                                    </td>
+                                    <td>
+                                        <input name='Pc$i' step='any' class='entrada' onkeyup='aumentarSize()' required value='$(error[6].Pc[i])' type='number'/>
+                                    </td>
+                                    <td>
+                                        <input name='y$i' step='any' class='entrada' onkeyup='aumentarSize()' required value='$(error[6].y[i])' type='number'/>
+                                    </td>
+                                    <td>
+                                        <input name='𝜔$i' step='any' class='entrada' onkeyup='aumentarSize()' required value='$(error[6].𝜔[i])' type='number'/>
+                                    </td>
+                                </tr>" for i=1:error[7]]... %>
+                            </table>
+                            <input name='n' class='entrada' onkeyup='aumentarSize()' required value='$(error[7])' type='number' style="visibility: hidden;"/>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="cajapapi">
+                    <button class="boton-header2" type="submit">Enviar</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="cajapapi">
+            <div class="caja-hija">
+                <div class="titulo-tabla-rojo">
+                    <h3>EOS  $(error[7])</h3>
+                </div>
+                <div class="contenedor-tabla">
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th class='top-tabla-rojo'>Van der Waals</th>
+                            <th class='top-tabla-rojo'>Redlich Kwong</th>
+                            <th class='top-tabla-rojo'>Soave Redlich Kwong</th>
+                            <th class='top-tabla-rojo'>Peng Robinson</th>
+                        </tr>
+                        <tr>
+                            <% [error[5]==1 ? "<th class='top-tabla-rojo'>ℍ<sup>R</sup>(J/mol)</th><td>$(error[1].H)</td>
+                            <td>$(error[2].H)</td>
+                            <td>$(error[3].H)</td>
+                            <td>$(error[4].H)</td>" : "<th class='top-tabla-rojo'>ℍ<sup>R</sup>(J/mol)</th>"]... %>
+                            
+                            <% [error[5]==1 ? "" : error[1].n==1 ? "<td >$(error[1].H)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[1].H[1])</td></tr>
+                                <tr><td>$(error[1].H[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[1].H[3])</td></tr>
+                                </table></td>"]... %>
+                            <% [error[5]==1 ? "" : error[2].n==1 ? "<td >$(error[2].H)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[2].H[1])</td></tr>
+                                <tr><td>$(error[2].H[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[2].H[3])</td></tr>
+                                </table></td>"]... %>
+                            <% [error[5]==1 ? "" : error[3].n==1 ? "<td >$(error[3].H)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[3].H[1])</td></tr>
+                                <tr><td>$(error[3].H[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[3].H[3])</td></tr>
+                                </table></td>"]... %>
+                            <% [error[5]==1 ? "" : error[4].n==1 ? "<td >$(error[4].H)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[4].H[1])</td></tr>
+                                <tr><td>$(error[4].H[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[4].H[3])</td></tr>
+                                </table></td>"]... %>
+                        </tr>
+                        <tr>
+                            <% [error[5]==1 ? "<th class='top-tabla-rojo'>𝕌<sup>R</sup>(J/mol)</th><td>$(error[1].U)</td>
+                            <td>$(error[2].U)</td>
+                            <td>$(error[3].U)</td>
+                            <td>$(error[4].U)</td>" : "<th class='top-tabla-rojo'>𝕌<sup>R</sup>(J/mol)</th>"]... %>
+                            <% [error[5]==1 ? "" : error[1].n==1 ? "<td >$(error[1].U)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[1].U[1])</td></tr>
+                                <tr><td>$(error[1].U[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[1].U[3])</td></tr>
+                                </table></td>"]... %>
+                            <% [error[5]==1 ? "" : error[2].n==1 ? "<td >$(error[2].U)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[2].U[1])</td></tr>
+                                <tr><td>$(error[2].U[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[2].U[3])</td></tr>
+                                </table></td>"]... %>
+                            <% [error[5]==1 ? "" : error[3].n==1 ? "<td >$(error[3].U)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[3].U[1])</td></tr>
+                                <tr><td>$(error[3].U[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[3].U[3])</td></tr>
+                                </table></td>"]... %>
+                            <% [error[5]==1 ? "" : error[4].n==1 ? "<td >$(error[4].U)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[4].U[1])</td></tr>
+                                <tr><td>$(error[4].U[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[4].U[3])</td></tr>
+                                </table></td>"]... %>
+
+                        </tr>
+                        <tr>
+                            <% [error[5]==1 ? "<th class='top-tabla-rojo'>𝕊<sup>R</sup>(J/mol K)</th><td>$(error[1].S)</td>
+                            <td>$(error[2].S)</td>
+                            <td>$(error[3].S)</td>
+                            <td>$(error[4].S)</td>" : "<th class='top-tabla-rojo'>𝕊<sup>R</sup>(J/mol K)</th>"]... %>
+                            <% [error[5]==1 ? "" : error[1].n==1 ? "<td >$(error[1].S)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[1].S[1])</td></tr>
+                                <tr><td>$(error[1].S[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[1].S[3])</td></tr>
+                                </table></td>"]... %>
+                            <% [error[5]==1 ? "" : error[2].n==1 ? "<td >$(error[2].S)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[2].S[1])</td></tr>
+                                <tr><td>$(error[2].S[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[2].S[3])</td></tr>
+                                </table></td>"]... %>
+                            <% [error[5]==1 ? "" : error[3].n==1 ? "<td >$(error[3].S)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[3].S[1])</td></tr>
+                                <tr><td>$(error[3].S[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[3].S[3])</td></tr>
+                                </table></td>"]... %>
+                            <% [error[5]==1 ? "" : error[4].n==1 ? "<td >$(error[4].S)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[4].S[1])</td></tr>
+                                <tr><td>$(error[4].S[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[4].S[3])</td></tr>
+                                </table></td>"]... %>
+
+                        </tr>
+                        <tr>
+                            <% [error[5]==1 ? "<th class='top-tabla-rojo'>𝔾<sup>R</sup>(J/mol)</th><td>$(error[1].G)</td>
+                            <td>$(error[2].G)</td>
+                            <td>$(error[3].G)</td>
+                            <td>$(error[4].G)</td>" : "<th class='top-tabla-rojo'>𝔾<sup>R</sup>(J/mol)</th>"]... %>
+                            <% [error[5]==1 ? "" : error[1].n==1 ? "<td >$(error[1].G)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[1].G[1])</td></tr>
+                                <tr><td>$(error[1].G[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[1].G[3])</td></tr>
+                                </table></td>"]... %>
+                            <% [error[5]==1 ? "" : error[2].n==1 ? "<td >$(error[2].G)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[2].G[1])</td></tr>
+                                <tr><td>$(error[2].G[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[2].G[3])</td></tr>
+                                </table></td>"]... %>
+                            <% [error[5]==1 ? "" : error[3].n==1 ? "<td >$(error[3].G)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[3].G[1])</td></tr>
+                                <tr><td>$(error[3].G[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[3].G[3])</td></tr>
+                                </table></td>"]... %>
+                            <% [error[5]==1 ? "" : error[4].n==1 ? "<td >$(error[4].G)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[4].G[1])</td></tr>
+                                <tr><td>$(error[4].G[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[4].G[3])</td></tr>
+                                </table></td>"]... %>
+
+                        </tr>
+                        <tr>
+                            <% [error[5]==1 ? "<th class='top-tabla-rojo'>𝔸<sup>R</sup>(J/mol)</th><td>$(error[1].A)</td>
+                            <td>$(error[2].A)</td>
+                            <td>$(error[3].A)</td>
+                            <td>$(error[4].A)</td>" : "<th class='top-tabla-rojo'>𝔸<sup>R</sup>(J/mol)</th>"]... %>
+                            <% [error[5]==1 ? "" : error[1].n==1 ? "<td >$(error[1].A)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[1].A[1])</td></tr>
+                                <tr><td>$(error[1].A[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[1].A[3])</td></tr>
+                                </table></td>"]... %>
+                            <% [error[5]==1 ? "" : error[2].n==1 ? "<td >$(error[2].A)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[2].A[1])</td></tr>
+                                <tr><td>$(error[2].A[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[2].A[3])</td></tr>
+                                </table></td>"]... %>
+                            <% [error[5]==1 ? "" : error[3].n==1 ? "<td >$(error[3].A)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[3].A[1])</td></tr>
+                                <tr><td>$(error[3].A[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[3].A[3])</td></tr>
+                                </table></td>"]... %>
+                            <% [error[5]==1 ? "" : error[4].n==1 ? "<td >$(error[4].A)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[4].A[1])</td></tr>
+                                <tr><td>$(error[4].A[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[4].A[3])</td></tr>
+                                </table></td>"]... %>
+
+                        </tr>
+                        <tr>
+                            <% [error[5]==1 ? "<th class='top-tabla-rojo'>φ</th><td>$(error[1].φ)</td>
+                            <td>$(error[2].φ)</td>
+                            <td>$(error[3].φ)</td>
+                            <td>$(error[4].φ)</td>" : "<th class='top-tabla-rojo'>φ</th>"]... %>
+                            <% [error[5]==1 ? "" : error[1].n==1 ? "<td >$(error[1].φ)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[1].φ[1])</td></tr>
+                                <tr><td>$(error[1].φ[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[1].φ[3])</td></tr>
+                                </table></td>"]... %>
+                            <% [error[5]==1 ? "" : error[2].n==1 ? "<td >$(error[2].φ)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[2].φ[1])</td></tr>
+                                <tr><td>$(error[2].φ[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[2].φ[3])</td></tr>
+                                </table></td>"]... %>
+                            <% [error[5]==1 ? "" : error[3].n==1 ? "<td >$(error[3].φ)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[3].φ[1])</td></tr>
+                                <tr><td>$(error[3].φ[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[3].φ[3])</td></tr>
+                                </table></td>"]... %>
+                            <% [error[5]==1 ? "" : error[4].n==1 ? "<td >$(error[4].φ)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[4].φ[1])</td></tr>
+                                <tr><td>$(error[4].φ[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[4].φ[3])</td></tr>
+                                </table></td>"]... %>
+
+                        </tr>
+                        <tr>
+                            <% [error[5]==1 ? "<th class='top-tabla-rojo'>f($(error[6].uP))</th><td>$(error[1].f)</td>
+                            <td>$(error[2].f)</td>
+                            <td>$(error[3].f)</td>
+                            <td>$(error[4].f)</td>" : "<th class='top-tabla-rojo'>f($(error[6].uP))</th>"]... %>
+                            <% [error[5]==1 ? "" : error[1].n==1 ? "<td >$(error[1].f)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[1].f[1])</td></tr>
+                                <tr><td>$(error[1].f[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[1].f[3])</td></tr>
+                                </table></td>"]... %>
+                            <% [error[5]==1 ? "" : error[2].n==1 ? "<td >$(error[2].f)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[2].f[1])</td></tr>
+                                <tr><td>$(error[2].f[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[2].f[3])</td></tr>
+                                </table></td>"]... %>
+                            <% [error[5]==1 ? "" : error[3].n==1 ? "<td >$(error[3].f)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[3].f[1])</td></tr>
+                                <tr><td>$(error[3].f[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[3].f[3])</td></tr>
+                                </table></td>"]... %>
+                            <% [error[5]==1 ? "" : error[4].n==1 ? "<td >$(error[4].f)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[4].f[1])</td></tr>
+                                <tr><td>$(error[4].f[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[4].f[3])</td></tr>
+                                </table></td>"]... %>
+
+                        </tr>
+                        <tr>
+                            <% [error[5]==1 ? "<th class='top-tabla-rojo'>Z</th><td>$(error[1].z)</td>
+                            <td>$(error[2].z)</td>
+                            <td>$(error[3].z)</td>
+                            <td>$(error[4].z)</td>" : "<th class='top-tabla-rojo'>Z</th>"]... %>
+                            <% [error[5]==1 ? "" : error[1].n==1 ? "<td >$(error[1].z)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[1].z[1])</td></tr>
+                                <tr><td>$(error[1].z[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[1].z[3])</td></tr>
+                                </table></td>"]... %>
+                            <% [error[5]==1 ? "" : error[2].n==1 ? "<td >$(error[2].z)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[2].z[1])</td></tr>
+                                <tr><td>$(error[2].z[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[2].z[3])</td></tr>
+                                </table></td>"]... %>
+                            <% [error[5]==1 ? "" : error[3].n==1 ? "<td >$(error[3].z)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[3].z[1])</td></tr>
+                                <tr><td>$(error[3].z[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[3].z[3])</td></tr>
+                                </table></td>"]... %>
+                            <% [error[5]==1 ? "" : error[4].n==1 ? "<td >$(error[4].z)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[4].z[1])</td></tr>
+                                <tr><td>$(error[4].z[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[4].z[3])</td></tr>
+                                </table></td>"]... %>
+
+                        </tr>
+                        <tr>
+                            <% [error[5]==1 ? "<th class='top-tabla-rojo'>V(cm<sup>3</sup>/mol)</th><td>$(error[1].v)</td>
+                            <td>$(error[2].v)</td>
+                            <td>$(error[3].v)</td>
+                            <td>$(error[4].v)</td>" : "<th class='top-tabla-rojo'>V(cm<sup>3</sup>/mol)</th>"]... %>
+                            <% [error[5]==1 ? "" : error[1].n==1 ? "<td >$(error[1].v)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[1].v[1])</td></tr>
+                                <tr><td>$(error[1].v[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[1].v[3])</td></tr>
+                                </table></td>"]... %>
+                            <% [error[5]==1 ? "" : error[2].n==1 ? "<td >$(error[2].v)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[2].v[1])</td></tr>
+                                <tr><td>$(error[2].v[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[2].v[3])</td></tr>
+                                </table></td>"]... %>
+                            <% [error[5]==1 ? "" : error[3].n==1 ? "<td >$(error[3].v)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[3].v[1])</td></tr>
+                                <tr><td>$(error[3].v[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[3].v[3])</td></tr>
+                                </table></td>"]... %>
+                            <% [error[5]==1 ? "" : error[4].n==1 ? "<td >$(error[4].v)</td>" : "<td style='padding: 0px;'><table>
+                                <tr><td>$(error[4].v[1])</td></tr>
+                                <tr><td>$(error[4].v[2])</td></tr>
+                                <tr><td class='td-eos'>$(error[4].v[3])</td></tr>
+                                </table></td>"]... %>
+
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <div class="fu1"></div>
+            <div class="fu2">
+                <div style="display: flex; align-items: center;">
+                    <div class="redsocial" style="background-image: -webkit-linear-gradient(180deg, rgb(3, 73, 166) 0%, rgb(21, 194, 123) 100%); align-items: center;">
+                        <a href=""><img src="img/genie/face.svg"/></a>
+                    </div>
+                    <div class="redsocial" style="background-image: -webkit-linear-gradient(180deg, rgb(68, 83, 172) 0%, rgb(3, 169, 219) 100%);">
+                        <a href=""><img src="img/genie/twitter.svg"/></a>
+                    </div>
+                    <div class="redsocial" style="background-image: -webkit-linear-gradient(180deg, rgb(74, 14, 143) 0%, rgb(180, 48, 167) 100%);">
+                        <a href=""><img src="img/genie/mail.svg"/></a>
+                    </div>
+                </div>
+                <div>
+                    <p style="color: rgba(255, 255, 255, 0.5); padding-top: 51px; font-size: 18px;">© derechos de autor 2020 por Emilio Alvizo Velazquez</p>
+                </div>
+            </div>
+        </footer>
+        <script src="js/genie/miscodigos.js"></script>
+        <script type="text/javascript" src="js/pgia.js"></script>
+        <script src="//i.upmath.me/latex.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </body>
+</html>

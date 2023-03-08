@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8"/>
+        <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+        <meta name="description" content/>
+        <meta name="author" content/>
+        <title>TermoQuímica</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:800,900,700,600,500,400&display=swap"/>
+        <link href="css/genie/nuevod.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <header>
+            <nav class="barra">
+                <a class="logo" href="./">Logo</a>
+                <div class="contenedor-nav">
+                    <ul class="primeros-botones">
+                        <li>
+                            <a href="./">Home</a>
+                        </li>
+                        <li class="contenedor-nav2">
+                            <a>Métodos</a>
+                            <ul class="primeros-botones2">
+                                <li>
+                                    <a href="./eos">EOS</a>
+                                </li>
+                                <li>
+                                    <a>Liquido/Vapor</a>
+                                    <ul class="ul2">
+                                        <li>
+                                            <a href="./ideal">Ideal</a>
+                                        </li>
+                                        <li>
+                                            <a href="./margules">Margules</a>
+                                        </li>
+                                        <li>
+                                            <a href="./vanlaar">Van Laar</a>
+                                        </li>
+                                        <li>
+                                            <a href="./wilson">Wilson</a>
+                                        </li>
+                                        <li>
+                                            <a href="./wilsonmod">Wilson Modificado</a>
+                                        </li>
+                                        <li>
+                                            <a href="./nrtl">NRTL</a>
+                                        </li>
+                                        <li>
+                                            <a href="./uniquac">UNIQUAC</a>
+                                        </li>
+                                        <li>
+                                            <a href="./unifac">UNIFAC</a>
+                                        </li>
+                                        <li>
+                                            <a href="./unifacmod">UNIFAC Modificado</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="./build/index.html" target="_blank">Documentación</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="contenedor-flex">
+                <div class="contenido-header">
+                    <h1 class="header-h1" data-pg-ia='{"l":[{"trg":"load","a":"fadeInUp"}]}' data-pg-ia-hide>Wilson</h1>
+                </div>
+                <div class="contenedor-imagen"></div>
+            </div>
+        </header>
+        <% if error[1].error %>
+        <% "" %>
+    <% else  %>
+        <form method="POST" action="./f4">
+            <section class="cajapapi">
+                <div class="caja-hija">
+                    <div class="titulo-tabla-verde">
+                        <h3>Numero de componentes</h3>
+                    </div>
+                    <div class="contenedor-tabla">
+                        <input class="t-ca" type="number" value="2" name="n" id="n" step="1" required>
+                    </div>
+                </div>
+            </section>
+            <div class="cajapapi">
+                <button class="boton-header2" type="submit">Enviar</button>
+            </div>
+        </form>
+        <% end %>
+        <% if error[1].error %>
+        <form method="GET" action="./Rwilson" class="text-center">
+            <section class="cajapapi">
+                <div class="caja-hija">
+                    <div class="titulo-tabla-verde">
+                        <h3>Numero de componentes</h3>
+                    </div>
+                    <div class="contenedor-tabla">
+                        <input class="t-ca" type="number" value="$(error[1].valor)" name="n" step="1" readonly>
+                    </div>
+                </div>
+            </section>
+            <section class="cajapapi">
+                <div class="caja-hija">
+                    <div class="titulo-tabla-rojo">
+                        <h3>Coeficientes de Wilson</h3>
+                    </div>
+                    <div class="contenedor-tabla">
+                        <table class="t-cu">
+                            <tbody>
+                                <% [j==1 && j==i ? "<tr><td><input type='number' name='Δg$i,$j' value='0' class='entrada' readonly></td>" : j==1 ? "<tr><td><input type='number' name='Δg$i,$j' placeholder='Δg $i,$j' value='1636.57' step='any' class='entrada'></td>" : i==j ? "<td><input type='number' name='Δg$i,$j' value='0' class='entrada' readonly></td>" : j==error[1].valor && j==i ? "<td><input type='number' name='Δg$i,$j' value='0' class='entrada' readonly></td></tr>" : j==error[1].valor ? "<td><input type='number' name='Δg$i,$j' placeholder='Δg $i,$j' value='500.4' step='any' class='entrada'></td></tr>" : "<td><input type='number' name='Δg$i,$j' placeholder='Δg $i,$j' step='any' value='50.1' class='entrada'></td>" for j=1:error[1].valor,i=1:error[1].valor]... %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <section class="cajapapi">
+                <div class="caja-hija">
+                    <div class="titulo-tabla-naranja">
+                        <h3>Constantes de Antoine</h3>
+                    </div>
+                    <div class="contenedor-tabla">
+                        <img src="img/genie/antoine.svg">
+                        <table class="t-ca">
+                            <tbody>
+                                <tr>
+                                    <th class='top-tabla-naranja'>Name</th>
+                                    <th class='top-tabla-naranja'>A</th>
+                                    <th class="top-tabla-naranja">B</th>
+                                    <th class='top-tabla-naranja'>C</th>
+                                </tr>
+                                <% ["<tr>
+						<th class='top-tabla-naranja'><input type='text' name='co$(i)' value='Componente $(i)' class='form-control text-center'></th>
+						<td><input type='number' name='$i,1' value='16.1154' placeholder='A $i' step='any' class='entrada'></td>
+						<td><input type='number' name='$i,2' value='3483.67' placeholder='B $i' step='any' class='entrada'></td>
+						<td><input type='number' name='$i,3' value='205.807' placeholder='C $i' step='any' class='entrada'></td>
+					</tr>" for i=1:error[1].valor]... %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="caja-hija">
+                    <div class="titulo-tabla-verde">
+                        <h3>Volumen molar</h3>
+                    </div>
+                    <div class="contenedor-tabla">
+                        <table class="t-ca">
+                            <tbody>
+                                <% ["<tr><th class='top-tabla-verde'> Componente $i</th>
+					<td><input type='number' name='v$i' value='0:0.1:1' placeholder='v $i' step='any' class='entrada'></td>
+					</tr>" for i=1:error[1].valor]... %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="caja-hija">
+                    <div class="titulo-tabla-morado">
+                        <h3>Rango</h3>
+                    </div>
+                    <div class="contenedor-tabla">
+                        <table class="t-ca">
+                            <tbody>
+                                <% ["<tr><th class='top-tabla-morado'> Componente $i</th>
+					<td><input type='text' name='x$i' value='0:0.1:1' placeholder='x $i' step='any' class='entrada'></td>
+					</tr>" for i=1:error[1].valor-1]... %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="caja-hija">
+                    <div class="titulo-tabla-azul">
+                        <h3>Pxy &amp; Txy</h3>
+                    </div>
+                    <div class="contenedor-tabla">
+                        <div>
+                            <select name="tipo" onchange="pxy_txy(this.form)">
+                                <option value="Pxy">Pxy</option>
+                                <option value="Txy">Txy</option>
+                            </select>
+                            <input class="t-cu" type="number" name="T" value="273.15" step='any' placeholder="273.15">
+                            <select name="unidadT">
+                                <option value="K">K</option>
+                                <option value="°C">°C</option>
+                                <option value="Ra">Ra</option>
+                                <option value="°F">°F</option>
+                            </select>
+                        </div>
+                        resultados en:
+                        <select name="usalida">
+                            <option value="atm">atm</option>
+                            <option value="Torr">Torr</option>
+                            <option value="Pa">Pa</option>
+                            <option value="kPa">kPa</option>
+                            <option value="psi">psi</option>
+                            <option value="bar">bar</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+            <div class="cajapapi">
+                <button class="boton-header2" type="submit">Enviar</button>
+            </div>
+        </form>
+    <% else  %>
+        <% "" %>
+        <% end %>
+        <footer>
+            <div class="fu1"></div>
+            <div class="fu2">
+                <div style="display: flex; align-items: center;">
+                    <div class="redsocial" style="background-image: -webkit-linear-gradient(180deg, rgb(3, 73, 166) 0%, rgb(21, 194, 123) 100%); align-items: center;">
+                        <a href=""><img src="img/genie/face.svg"/></a>
+                    </div>
+                    <div class="redsocial" style="background-image: -webkit-linear-gradient(180deg, rgb(68, 83, 172) 0%, rgb(3, 169, 219) 100%);">
+                        <a href=""><img src="img/genie/twitter.svg"/></a>
+                    </div>
+                    <div class="redsocial" style="background-image: -webkit-linear-gradient(180deg, rgb(74, 14, 143) 0%, rgb(180, 48, 167) 100%);">
+                        <a href=""><img src="img/genie/mail.svg"/></a>
+                    </div>
+                </div>
+                <div>
+                    <p style="color: rgba(255, 255, 255, 0.5); padding-top: 51px; font-size: 18px;">© derechos de autor 2020 por Emilio Alvizo Velazquez</p>
+                </div>
+            </div>
+        </footer>
+        <script src="js/genie/miscodigos.js"></script>
+        <script type="text/javascript" src="js/genie/pgia.js"></script>
+        <script src="//i.upmath.me/latex.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </body>
+</html>
